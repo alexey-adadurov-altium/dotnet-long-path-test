@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LongPathTest.NoManifest")]
+[assembly: AssemblyTitle("LongPathTest.Net48.WIthManifest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("LongPathTest.NoManifest")]
+[assembly: AssemblyProduct("LongPathTest.Net48.WIthManifest")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("1b082e44-4055-495f-a040-2d4b22f55d72")]
+[assembly: Guid("db650d94-509b-4a25-886f-159e55f90deb")]
 
 // Version information for an assembly consists of the following four values:
 //

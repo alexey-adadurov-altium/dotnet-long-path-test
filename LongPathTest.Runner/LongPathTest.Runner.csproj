@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1895F195-DAC5-493A-962B-2DAD79396FF1}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>LongPathTest.Runner</RootNamespace>
+    <AssemblyName>LongPathTest.Runner</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Shared\Util.cs">
+      <Link>Util.cs</Link>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\LongPathTest.Net48.NoManifest\bin\Debug\LongPathTest.Net48.NoManifest.exe.config">
+      <Link>executors\LongPathTest.Net48.NoManifest.exe.config</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\LongPathTest.Net48.WIthManifest\bin\Debug\LongPathTest.Net48.WIthManifest.exe">
+      <Link>executors\LongPathTest.Net48.WIthManifest.exe</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\LongPathTest.Net48.WIthManifest\bin\Debug\LongPathTest.Net48.WIthManifest.exe.config">
+      <Link>executors\LongPathTest.Net48.WIthManifest.exe.config</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\LongPathTest.NetCore3.1\bin\Debug\netcoreapp3.1\LongPathTest.NetCore31.dll">
+      <Link>executors\LongPathTest.NetCore31.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\LongPathTest.NetCore3.1\bin\Debug\netcoreapp3.1\LongPathTest.NetCore31.exe">
+      <Link>executors\LongPathTest.NetCore31.exe</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\LongPathTest.NetCore3.1\bin\Debug\netcoreapp3.1\LongPathTest.NetCore31.pdb">
+      <Link>executors\LongPathTest.NetCore31.pdb</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\LongPathTest.NetCore3.1\bin\Debug\netcoreapp3.1\LongPathTest.NetCore31.deps.json">
+      <Link>executors\LongPathTest.NetCore31.deps.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\LongPathTest.NetCore3.1\bin\Debug\netcoreapp3.1\LongPathTest.NetCore31.runtimeconfig.dev.json">
+      <Link>executors\LongPathTest.NetCore31.runtimeconfig.dev.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\LongPathTest.NetCore3.1\bin\Debug\netcoreapp3.1\LongPathTest.NetCore31.runtimeconfig.json">
+      <Link>executors\LongPathTest.NetCore31.runtimeconfig.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\LongPathTest.Net48.NoManifest\bin\Debug\LongPathTest.Net48.NoManifest.exe">
+      <Link>executors\LongPathTest.Net48.NoManifest.exe</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

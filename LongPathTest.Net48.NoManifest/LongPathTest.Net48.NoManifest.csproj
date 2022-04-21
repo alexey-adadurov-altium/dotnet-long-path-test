@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1B082E44-4055-495F-A040-2D4B22F55D72}</ProjectGuid>
+    <ProjectGuid>{98BFD16B-4290-43DE-A1EA-E58CFF52984B}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>LongPathTest.NoManifest</RootNamespace>
-    <AssemblyName>LongPathTest.NoManifest</AssemblyName>
+    <RootNamespace>LongPathTest.Net48.NoManifest</RootNamespace>
+    <AssemblyName>LongPathTest.Net48.NoManifest</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,8 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\LongPathTest\Program.cs">
+    <Compile Include="..\LongPathTest.Net48.WIthManifest\Program.cs">
       <Link>Program.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Test.cs">
+      <Link>Test.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Util.cs">
+      <Link>Util.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Win32Registry.cs">
+      <Link>Win32Registry.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

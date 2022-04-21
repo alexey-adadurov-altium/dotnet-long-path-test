@@ -1,14 +1,13 @@
-﻿using Microsoft.Win32;
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using static LongPathTest.Utils;
 
 namespace LongPathTest
 {
-    internal class Program
+    public static class Test
     {
-        static void Main(string[] args)
+        public static void Execute(Action registryConfigLoggerForWin32Only)
         {
             try
             {
@@ -20,7 +19,7 @@ namespace LongPathTest
                 Log($"This test will attempt to create a multiple enclosed directories with a long path starting at {root}");
                 Log(@"You may need admin permissions to successfully complete the test.");
                 Log("");
-                LogLongPathConfigSwitches();
+                LogLongPathConfigSwitches(registryConfigLoggerForWin32Only);
                 Log("");
                 WaitEnterKeyHit();
 
@@ -31,8 +30,6 @@ namespace LongPathTest
                 Log($"Enumerating the content of {pathBase}...");
                 GetTotalSize(new DirectoryInfo(pathBase));
                 Log($"    >>>> SUCCEEDED!!!    ");
-                
-                RunWithoutManifest();
             }
             catch (Exception ex)
             {
@@ -43,39 +40,14 @@ namespace LongPathTest
             }
         }
 
-        private static void RunWithoutManifest()
+        public static long GetTotalSize(DirectoryInfo rootFolder)
         {
-            WaitEnterKeyHit("Next step: run the same tests using LongPathTest.NoManifest.exe (without win32 manifest).");
-            Log("===========================================================");
-            var p = new Process();
-
-            p.StartInfo = new ProcessStartInfo(@"LongPathTest.NoManifest.exe")
-            {
-                UseShellExecute = false
-            };
-
-            p.Start();
-            p.WaitForExit();
+            var totalSize = rootFolder.EnumerateFiles().Sum(file => file.Length);
+            totalSize += rootFolder.EnumerateDirectories().Sum(subfolder => GetTotalSize(subfolder));
+            return totalSize;
         }
 
-        private static void WaitEnterKeyHit(string prompt = null)
-        {
-            Log("");
-            if (! string.IsNullOrWhiteSpace(prompt))
-            {
-                Log(prompt);
-            }
-            Log("Press ENTER to continue...");
-            Console.ReadLine();
-            Log("");
-        }
-
-        private static void Log(string message = null)
-        {
-            Console.WriteLine(message);
-        }
-
-        private static void LogLongPathConfigSwitches()
+        private static void LogLongPathConfigSwitches(Action logWin32RegistrySwitches = null)
         {
             void LogSwitchValue(string switchName)
             {
@@ -89,28 +61,13 @@ namespace LongPathTest
                 }
             }
 
-            void LogRegistryLongPathEnablingParameter()
-            {
-                const string LongPathRegKeyName = @"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem";
-                const string LongPathRegValueName = @"LongPathsEnabled";
-                var v = Registry.GetValue(LongPathRegKeyName, LongPathRegValueName, 0);
-
-                Log($"    Registry value {LongPathRegKeyName}::{LongPathRegValueName} is '{v}'");
-            }
-
             Log($"YOUR SYSTEM CONFIGURATION OPTIONS RELATED TO LONG PATHS:");
 
             Log($"    CLR version: {Environment.Version}");
             LogSwitchValue("Switch.System.IO.UseLegacyPathHandling");
             LogSwitchValue("Switch.System.IO.BlockLongPaths");
-            LogRegistryLongPathEnablingParameter();
+            logWin32RegistrySwitches?.Invoke();
         }
 
-        public static long GetTotalSize(DirectoryInfo rootFolder)
-        {
-            var totalSize = rootFolder.EnumerateFiles().Sum(file => file.Length);
-            totalSize += rootFolder.EnumerateDirectories().Sum(subfolder => GetTotalSize(subfolder));
-            return totalSize;
-        }
     }
 }
